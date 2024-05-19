@@ -1,0 +1,3 @@
+use tmdb keys 
+api key    944d386ed73c0afb15150448b688472b
+npm i saas react-router-dom react-icons axios
