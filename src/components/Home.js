@@ -67,7 +67,7 @@ fetchPopular()
   return (
       < section className='home  bg-black'>
   
-   <div className='  banner w-[100%] h-[500px]   bg-cover bg-no-repeat bg-center opacity-70 ' style={{ backgroundImage: popularMovies.length>0 ? `url(${imgUrl}/${popularMovies[0].poster_path})` : "" }}>
+   <div className='  banner w-[100%] h-[500px]   bg-contain bg-no-repeat bg-center opacity-70 ' style={{ backgroundImage: popularMovies.length>0 ? `url(${imgUrl}/${popularMovies[0].poster_path})` : "" }}>
    <div className="p-10 flex flex-col items-left justify-center gap-14 w-[50%] h-full ">
        <h2 className='text-white text-5xl font-bold '>{popularMovies.length && popularMovies[0].title}</h2>
        <p className='text-white text-xl'>{popularMovies.length && popularMovies[0].overview}</p>
