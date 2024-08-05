@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import video from "./videos/deadpool.mp4"
 import { BiPlay } from 'react-icons/bi';
 import { AiOutlinePlus } from 'react-icons/ai';
+import Read from './Read';
+import Television from './Television';
 
 const apiKey = "944d386ed73c0afb15150448b688472b";
 const url = "https://api.themoviedb.org/3/movie"
@@ -16,10 +19,10 @@ const Card = ({img})=>(
 )
 
 const Row = ({title, arr=[]})=>(
-    <div className='p-2  '>
-    <h2 className=' text-md font-medium ml-3'>{title}</h2>
+    <div className='p-2 mt-2   bg-black     '>
+    <h2 className=' text-lg font-medium ml-3 text-white'>{title}</h2>
 
-    <div className='flex justify-evenly overflow-x-auto'>
+    <div className='flex justify-evenly  overflow-x-auto'>
       {
 
         
@@ -64,27 +67,43 @@ fetchNowPlaying()
 fetchTopRated()
 fetchPopular()
   }, [])
+
+  // read more read less
+
+
   return (
-      < section className='home  bg-black'>
+      < section className='home  bg-gray-900  mt-24 '>
   
-   <div className='  banner w-[100%] h-[500px]   bg-contain bg-no-repeat bg-center opacity-70 ' style={{ backgroundImage: popularMovies.length>0 ? `url(${imgUrl}/${popularMovies[0].poster_path})` : "" }}>
-   <div className="p-10 flex flex-col items-left justify-center gap-14 w-[50%] h-full ">
+  <div className='banner  lg:flex w-full h-[auto]   bg-black ' >
+   <div className=" lg:w-3/5 p-10 flex flex-col items-left  gap-14  h-full  ">
        <h2 className='text-white text-5xl font-bold '>{popularMovies.length && popularMovies[0].title}</h2>
-       <p className='text-white text-xl'>{popularMovies.length && popularMovies[0].overview}</p>
-<div className='flex items-center gap-7 '>
-<button className='cursor-pointer hover:opacity-[0.8] hover:bg-black flex items-center text-2xl  justify-center gap-3 px-[1rem] py-3 rounded-lg w-[150px] z-10 bg-red-500'><BiPlay/> Play </button>
-       <button className='cursor-pointer hover:opacity-[0.8] hover:bg-red-500 flex items-center text-2xl  justify-center gap-3 px-[1rem] py-3 rounded-lg w-[150px] z-10 bg-black'> <AiOutlinePlus/> My List </button>
+ <Read popularMovies={popularMovies}/>
+<div className='flex items-center justify-center   gap-7 '>
+<button className='cursor-pointer hover:opacity-[0.8] flex items-center text-white text-2xl  justify-center gap-3 px-[1.2rem] py-3 rounded-lg z-10 bg-red-500'><BiPlay/> Play </button>
+       <button className='cursor-pointer hover:opacity-[0.8]  bg-white text-black flex items-center text-2xl  justify-center gap-3 px-[1rem] py-3 rounded-lg  z-10 '> <AiOutlinePlus/> My List </button>
 </div>
       
    </div>
-   
+    
+    {/* <video className='h-[400px] w-[90%] m-auto rounded-xl    ' controls autoPlay  muted>
+    <source src={video} type="video/mp4" />
+    
+  </video> */}
+  
+  <Television/>
+
 
    </div>
+
+   <div>
+    
    <Row title={'Upcoming Movies'} arr={upcomingMovies}/>
    <Row title={'Now Playing Movies'} arr={nowPlayingMovies}/>
    <Row title={'Popular movies'} arr={popularMovies }/>
 
    <Row title={'Top Rated Movies'} arr={topratedMovies }/>
+   </div>
+ 
 
    {/* <Row title={'Popular on Netflix'}/>
    <Row title={'Movies'}/>
